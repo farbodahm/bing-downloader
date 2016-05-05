@@ -9,6 +9,7 @@ Using this simple script you can download Bing daily picture and set it as your 
 * `cd bing-downloader/`
 * `sudo chmod +x bing-downloader.sh`
 * `./bing-downloader.sh`
+
 You can use `crontab` to run script in special time.
 
 ## Enjoy! :)
