@@ -45,8 +45,8 @@ full_add=$bing$image_url
 name=$(echo $image_url | egrep -o '([^\/]+)\/?$' )
 
 #Check if that image doesnt have $size change it to defult size (1366x768)!
-link=$(curl -s --head $full_add | head -n 1 | egrep -o "OK")
-if [[ $link != "OK" ]]
+link=$(curl -s --head $full_add | head -n 1 | egrep -o "200 OK")
+if [[ $link != "200 OK" ]]
 then
 	echo "The '$full_add' doesent have '$size' size, so i change it to defult size!" >> "$log"
 	full_add=$(echo $full_add | sed s/$size/1366x768/g)
