@@ -9,7 +9,6 @@ bing="http://www.bing.com"
 #size
 #Note: In most cases "1366x768" work better!
 size="1920x1200"
-#size="1366x768"
 
 #path to download file
 path="/home/$USER/bing"
@@ -44,6 +43,14 @@ full_add=$bing$image_url
 
 #get image name
 name=$(echo $image_url | egrep -o '([^\/]+)\/?$' )
+
+#Check if that image doesnt have $size change it to defult size (1366x768)!
+link=$(curl -s --head $full_add | head -n 1 | egrep -o "OK")
+if [[ $link != "OK" ]]
+then
+	echo "The '$full_add' doesent have '$size' size, so i change it to defult size!" >> "$log"
+	full_add=$(echo $full_add | sed s/$size/1366x768/g)
+fi
 
 #check if file doesnt exists download it!
 if [[ ! -f "$path/$name"  ]]
